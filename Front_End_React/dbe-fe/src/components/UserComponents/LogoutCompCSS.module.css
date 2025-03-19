@@ -1,0 +1,10 @@
+.form_section {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    padding: 1% 1%;
+    text-shadow: 1px 1px 1px darkblue;
+}

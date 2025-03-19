@@ -1,10 +1,12 @@
 import {Link, NavLink} from 'react-router';
 import localStyles from './HeaderCompCSS.module.css'
+import { UserContext } from '../../contexts/UserContext';
+import { useContext } from 'react';
 
 
 export default function Header() {
-    let isLoggedIn = true;
-    let isStaff = true;
+    const {username, userId, token, isStaff} = useContext(UserContext)
+
     return (
         <>
             <header className={localStyles.header_class}>
@@ -18,11 +20,11 @@ export default function Header() {
                         <Link to="/home">
                             <img className={localStyles.logo_img }src='/DBE_logo.jpg'/>
                         </Link>
-                            {isLoggedIn ? (<p>Hello User</p>) : (<p>Hello Guest</p>)}
+                            {username ? (<p>Hello {username}</p>) : (<p>Hello Guest</p>)}
                     </div>
                     <div className={localStyles.type_nav}>
                         {(() => {
-                            if (isLoggedIn) {
+                            if (userId) {
                                 if (isStaff) {
                                     return (
                                         <>
@@ -36,7 +38,6 @@ export default function Header() {
                                                 <img src="/def_prof_pic.jpg"/>
                                             </div>
                                         </NavLink>
-                               
                                         </>
                                     )
                                 } else if (!isStaff) {
@@ -50,7 +51,6 @@ export default function Header() {
                                                     <img src="/def_prof_pic.jpg"/>
                                             </div>
                                         </NavLink>
-              
                                         </>
                                     )
                                 }

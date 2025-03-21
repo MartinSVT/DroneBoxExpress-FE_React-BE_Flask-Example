@@ -18,7 +18,7 @@ const requester = async (method, url, data, options = {}) => {
     const ifResponse = response.headers.get('Content-Type');
 
     if (!ifResponse) {
-        // Error Handiling
+        // Error Handiling of Bad Response with no Header
         return;
     }
     

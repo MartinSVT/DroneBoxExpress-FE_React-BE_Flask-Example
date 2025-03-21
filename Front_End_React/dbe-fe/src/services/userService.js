@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from "react";
-import { useContext } from "react";
+import { useEffect, useRef } from "react";
 import requester from "../utilities/requester";
-import { UserContext } from "../contexts/UserContext";
 
 const loginUrl = 'http://127.0.0.1:5000/login';
 const userDetailsUrl = 'http://127.0.0.1:5000/user-details'
+const registerUrl = 'http://127.0.0.1:5000/register-user'
 
 export const useLogin = () => {
     const abortRef = useRef();
@@ -50,5 +49,35 @@ export const useUserDetails = () => {
 
     return { 
         getUserDetails, 
+    }
+};
+
+
+export const useRegister = () => {
+    const abortRef = useRef();
+
+    const registerUser = async (username, email, firstName, lastName, password, password2) => {
+        const result = await requester.post(
+            registerUrl,
+            { 
+                username: username, 
+                email: email, 
+                first_name: firstName, 
+                last_name: lastName, 
+                password: password, 
+                password2: password2
+             },
+            { signal: abortRef.current.signal }
+        );
+        return result; }
+
+    useEffect(() => {
+        const abortController = new AbortController();
+        abortRef.current = abortController;
+        return () => {abortController.abort();};
+    }, []);
+
+    return {
+        registerUser,
     }
 };

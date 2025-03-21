@@ -59,9 +59,9 @@
   background-color:cornflowerblue;
   background-image: url("../cargo_drone.jpg");
   background-position: center;
-  background-repeat: no-repeat;
+  background-repeat: repeat-y;
   background-size: cover;
-  background-position-y: -50px;
+  background-position-y: -0px;
 }
 /* Buttons */
 .a_button {

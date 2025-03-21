@@ -12,6 +12,8 @@ import { localData } from './utilities/localUserData'
 import Login from './components/UserComponents/LoginComp'
 import { useUserDetails } from './services/userService'
 import Logout from './components/UserComponents/LogoutComp'
+import Register from './components/UserComponents/RegisterComp'
+import SuccsefulRegister from './components/UserComponents/SuccesfullRegistrationComp'
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState({});
@@ -56,6 +58,8 @@ function App() {
             <Route path='/addArticle' element={<AddArticle />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/logout' element={<Logout />}></Route>
+            <Route path='/register' element={<Register />}></Route>
+            <Route path='/successfulregister/:user' element={<SuccsefulRegister />}></Route>
           </Routes>
         </main>
         <Footer/>

@@ -1,8 +1,6 @@
 import globalStyles from '../../App.module.css'
 import NewsArticle from "./NewsArticleComp";
 import { useNewsArticles } from "../../services/newsArticlesService";
-import { UserContext } from '../../contexts/UserContext';
-import { useContext } from 'react';
 
 export default function Home() {
     const { articles } = useNewsArticles();

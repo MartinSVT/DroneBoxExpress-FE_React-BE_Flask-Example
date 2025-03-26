@@ -1,4 +1,7 @@
+import { Link } from 'react-router'
 import globalStyles from '../../App.module.css'
+import { useContext } from 'react'
+import { UserContext } from '../../contexts/userContext'
 
 export default function NewsArticle({
     id,
@@ -8,6 +11,7 @@ export default function NewsArticle({
     updated_date,
     article_user,
 }) {
+    const {username, userId, token, isStaff} = useContext(UserContext)
 
     return (
         <article className={globalStyles.news_article}>
@@ -15,10 +19,12 @@ export default function NewsArticle({
             <div>{ article_content }</div>
             <p>Last Updated At: {updated_date ? (<>{updated_date.split("T", 1)}</>) : (<>Not Updated</>)}</p>
             <p>Created On: { created_date.split("T", 1) }</p>
-                <div>
-                    <a className={globalStyles.a_button_inside}>Edit Article</a>
-                    <a className={globalStyles.a_button_inside}>Delete Article</a>
-                </div>
+                {article_user == userId ? (
+                    <div>
+                        <Link to={`/editArticle/${id}`} className={globalStyles.a_button_inside}>Edit Article</Link>
+                        <Link to={`/deleteArticle/${id}`} className={globalStyles.a_button_inside}>Delete Article</Link>
+                    </div>
+                ) : <></>}
         </article>
     )
 }

@@ -1,6 +1,6 @@
 import {Link, NavLink} from 'react-router';
 import localStyles from './HeaderCompCSS.module.css'
-import { UserContext } from '../../contexts/UserContext';
+import { UserContext } from '../../contexts/userContext';
 import { useContext } from 'react';
 
 

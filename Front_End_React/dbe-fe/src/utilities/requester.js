@@ -32,5 +32,5 @@ export default {
     post: requester.bind(null, 'POST'),
     put: requester.bind(null, 'PUT'),
     delete: requester.bind(null, 'DELETE'),
-    baserequester: requester,
+    baseRequester: requester,
 }

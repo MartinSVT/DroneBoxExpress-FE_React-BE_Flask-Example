@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './LoginCompCSS.module.css'
 import { useLogin } from "../../services/userService";
-import { UserContext } from "../../contexts/UserContext";
+import { UserContext } from "../../contexts/userContext";
 
 export default function Login() {
     const { userLoginHandler } = useContext(UserContext);

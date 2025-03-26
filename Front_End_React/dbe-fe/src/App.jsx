@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router'
 import globalStyles from './App.module.css'
-import { UserContext } from './contexts/UserContext'
+import { UserContext } from './contexts/userContext'
 import Header from './components/HeaderComponent/HeaderComp'
 import Home from './components/HomePageComponents/HomeComp'
 import Footer from './components/FooterComponent/FooterComp'
@@ -14,6 +14,8 @@ import { useUserDetails } from './services/userService'
 import Logout from './components/UserComponents/LogoutComp'
 import Register from './components/UserComponents/RegisterComp'
 import SuccsefulRegister from './components/UserComponents/SuccesfullRegistrationComp'
+import DeleteArticle from './components/HomePageComponents/DeleteArticleComp'
+import EditArticle from './components/HomePageComponents/EditArticleComp'
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState({});
@@ -37,13 +39,11 @@ function App() {
   };
   
   useEffect(() => {
-    const abortController = new AbortController();
     let userId = localData.get("userId");
     let username = localData.get("username");
     let token = localData.get("token");
     let isStaff = localData.get("isStaff");
     setCurrentUserData({userId, username, token, isStaff})
-    return () => {abortController.abort();};
   }, []);
 
   return (
@@ -56,6 +56,8 @@ function App() {
             <Route path='/about' element={<AboutUs />}></Route>
             <Route path='/contacts' element={<Contacts />}></Route>
             <Route path='/addArticle' element={<AddArticle />}></Route>
+            <Route path='/editArticle/:articleId' element={<EditArticle />}></Route>
+            <Route path='/deleteArticle/:articleId' element={<DeleteArticle />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/logout' element={<Logout />}></Route>
             <Route path='/register' element={<Register />}></Route>

@@ -31,9 +31,9 @@ export default function Header() {
                                         <NavLink to="/operations">Operations</NavLink>
                                         <NavLink to="/addArticle">Add Article</NavLink> 
                                         <NavLink to="/staffOrders">Orders</NavLink>
-                                        <NavLink to="/viewProfile">Profile</NavLink>
+                                        <NavLink to="/profile">Profile</NavLink>
                                         <NavLink to="/logout">Logout</NavLink>
-                                        <NavLink id={localStyles.logo_link} to="/viewProfile">
+                                        <NavLink id={localStyles.logo_link} to="/profile">
                                             <div className={localStyles.prof_logo}>
                                                 <img src="/def_prof_pic.jpg"/>
                                             </div>
@@ -44,9 +44,9 @@ export default function Header() {
                                     return (
                                         <>
                                         <NavLink to="/orders">Orders</NavLink>
-                                        <NavLink to="/viewProfile">Profile</NavLink>
+                                        <NavLink to="/profile">Profile</NavLink>
                                         <NavLink to="/logout">Logout</NavLink>
-                                        <NavLink id={localStyles.logo_link} to="/viewProfile">
+                                        <NavLink id={localStyles.logo_link} to="/profile">
                                             <div className={localStyles.prof_logo}>
                                                     <img src="/def_prof_pic.jpg"/>
                                             </div>

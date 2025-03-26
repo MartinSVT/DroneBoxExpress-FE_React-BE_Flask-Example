@@ -1,6 +1,6 @@
 import { useCallback, useContext, useMemo } from "react";
-import { UserContext } from "./userContext";
-import requester from "../utilities/requester";
+import { UserContext } from "../contexts/userContext";
+import requester from "./requester";
 
 
 export default function useAuthRequester() {

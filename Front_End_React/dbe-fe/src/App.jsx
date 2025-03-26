@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Route, Routes } from 'react-router'
 import globalStyles from './App.module.css'
 import { UserContext } from './contexts/userContext'
@@ -16,9 +16,16 @@ import Register from './components/UserComponents/RegisterComp'
 import SuccsefulRegister from './components/UserComponents/SuccesfullRegistrationComp'
 import DeleteArticle from './components/HomePageComponents/DeleteArticleComp'
 import EditArticle from './components/HomePageComponents/EditArticleComp'
+import AuthGuard from './guards/AuthGuard'
+import GuestGuard from './guards/GuestGuard'
+import PermissionGuard from './guards/PermissionGuard'
+import Profile from './components/UserComponents/ProfileComp'
+import { getUserDataFromLocal } from './utilities/localUserData'
+import UserEditComp from './components/UserComponents/UserEditComp'
+import DeleteUser from './components/UserComponents/DeleteUserComp'
 
 function App() {
-  const [currentUserData, setCurrentUserData] = useState({});
+  const [currentUserData, setCurrentUserData] = useState(() => getUserDataFromLocal());
   const { getUserDetails } = useUserDetails();
 
   const userLoginHandler = async (resultData) => {
@@ -38,14 +45,6 @@ function App() {
     localData.remove("isStaff")
   };
   
-  useEffect(() => {
-    let userId = localData.get("userId");
-    let username = localData.get("username");
-    let token = localData.get("token");
-    let isStaff = localData.get("isStaff");
-    setCurrentUserData({userId, username, token, isStaff})
-  }, []);
-
   return (
     <UserContext.Provider value={{ ...currentUserData, userLoginHandler, userLogoutHandler }}>
       <div className={globalStyles.main_body}>
@@ -55,13 +54,22 @@ function App() {
             <Route path='/home' element={<Home />}></Route>
             <Route path='/about' element={<AboutUs />}></Route>
             <Route path='/contacts' element={<Contacts />}></Route>
-            <Route path='/addArticle' element={<AddArticle />}></Route>
-            <Route path='/editArticle/:articleId' element={<EditArticle />}></Route>
-            <Route path='/deleteArticle/:articleId' element={<DeleteArticle />}></Route>
-            <Route path='/login' element={<Login />}></Route>
-            <Route path='/logout' element={<Logout />}></Route>
-            <Route path='/register' element={<Register />}></Route>
-            <Route path='/successfulregister/:user' element={<SuccsefulRegister />}></Route>
+            <Route element={<AuthGuard />}>
+              <Route path='/logout' element={<Logout />}></Route>
+              <Route path='/profile' element={<Profile />}></Route>
+              <Route path='/editProfile' element={<UserEditComp/>}></Route>
+              <Route path='/deleteProfile' element={<DeleteUser/>}></Route>
+              <Route element={<PermissionGuard />}>
+                <Route path='/addArticle' element={<AddArticle />}></Route>
+                <Route path='/editArticle/:articleId' element={<EditArticle />}></Route>
+                <Route path='/deleteArticle/:articleId' element={<DeleteArticle />}></Route>
+              </Route>
+            </Route>
+            <Route element={<GuestGuard />}>
+              <Route path='/login' element={<Login />}></Route>
+              <Route path='/register' element={<Register />}></Route>
+              <Route path='/successfulregister/:user' element={<SuccsefulRegister />}></Route>
+            </Route>
           </Routes>
         </main>
         <Footer/>

@@ -1,9 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useContext } from "react";
 import requester from "../utilities/requester";
+import useAuthRequester from "../utilities/authRequester";
+import { UserContext } from "../contexts/userContext";
 
 const loginUrl = 'http://127.0.0.1:5000/login';
 const userDetailsUrl = 'http://127.0.0.1:5000/user-details'
 const registerUrl = 'http://127.0.0.1:5000/register-user'
+const userUpdateUrl = 'http://127.0.0.1:5000/user-update'
+const userDeleteUrl = 'http://127.0.0.1:5000/user-delete'
 
 export const useLogin = () => {
     const abortRef = useRef();
@@ -52,6 +56,20 @@ export const useUserDetails = () => {
     }
 };
 
+export const useUpdateUser = () => {
+    const {authenticatedRequest} = useAuthRequester()
+    const {userId} = useContext(UserContext)
+
+    const update = async (userData) => {
+        const result = await authenticatedRequest.put(`${userUpdateUrl}/${userId}`, userData);
+        return result;
+    }
+
+    return {
+        update,
+    }
+};
+
 
 export const useRegister = () => {
     const abortRef = useRef();
@@ -79,5 +97,19 @@ export const useRegister = () => {
 
     return {
         registerUser,
+    }
+};
+
+export const useDeleteUser = () => {
+    const {authenticatedRequest} = useAuthRequester()
+    const {userId} = useContext(UserContext)
+
+    const deleteUser = async () => {
+        const result = await authenticatedRequest.delete(`${userDeleteUrl}/${userId}`);
+        return result;
+    }
+
+    return {
+        deleteUser,
     }
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, useRef } from "react";
 import { UserContext } from "../contexts/userContext";
 import requester from "../utilities/requester";
-import useAuthRequester from "../contexts/authRequester";
+import useAuthRequester from "../utilities/authRequester";
 import { data } from "react-router";
 
 

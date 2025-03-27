@@ -86,6 +86,8 @@ export default function UserEditComp() {
                     placeholder="Last Name..."
                     defaultValue={detailedUserData.last_name}
                 />
+                <br></br>
+                <Link className={globalStyles.a_button_inside} to="/changePassword">Change Password</Link>
                 <p id={localStyles.errors_p}>{formState.errorString}</p>
                 <div className={localStyles.form_buttons_div}>
                     <button type="submit" disabled={isPending} className={globalStyles.a_button_inside}>Save</button>

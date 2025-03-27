@@ -1,8 +1,7 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../contexts/userContext";
 import requester from "../utilities/requester";
 import useAuthRequester from "../utilities/authRequester";
-import { data } from "react-router";
 
 
 const getNewsArticlesUrl = 'http://127.0.0.1:5000/news';

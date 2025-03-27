@@ -23,6 +23,8 @@ import Profile from './components/UserComponents/ProfileComp'
 import { getUserDataFromLocal } from './utilities/localUserData'
 import UserEditComp from './components/UserComponents/UserEditComp'
 import DeleteUser from './components/UserComponents/DeleteUserComp'
+import ChangePassword from './components/UserComponents/ChangePasswordComp'
+import Operations from './components/OperationsComponents/OperationsComp'
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState(() => getUserDataFromLocal());
@@ -59,10 +61,12 @@ function App() {
               <Route path='/profile' element={<Profile />}></Route>
               <Route path='/editProfile' element={<UserEditComp/>}></Route>
               <Route path='/deleteProfile' element={<DeleteUser/>}></Route>
+              <Route path='/changePassword' element={<ChangePassword />}></Route>
               <Route element={<PermissionGuard />}>
                 <Route path='/addArticle' element={<AddArticle />}></Route>
                 <Route path='/editArticle/:articleId' element={<EditArticle />}></Route>
                 <Route path='/deleteArticle/:articleId' element={<DeleteArticle />}></Route>
+                <Route path='/operations' element={<Operations />}></Route>
               </Route>
             </Route>
             <Route element={<GuestGuard />}>

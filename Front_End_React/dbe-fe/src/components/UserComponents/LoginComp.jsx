@@ -30,18 +30,18 @@ export default function Login() {
                 <h1 className={globalStyles.section_heading}>Login Page</h1>
                 <form className={localStyles.form_flex} action={loginAction}>
                     <label htmlFor="username">Username:</label>
-                    <input type="text" id="username" name="username" placeholder="Type Username" required/>
+                    <input type="text" id="username" name="username" placeholder="Type Username" required />
 
                     <label htmlFor="password">Password:</label>
-                    <input type="password" id="password" name="password" placeholder="***********" required/>
+                    <input type="password" id="password" name="password" placeholder="***********" required />
                     
+                    <p id={localStyles.errors_p}>{errorMsg}</p>
+
                     <div className={localStyles.form_buttons_div}>
                         <button type="submit" disabled={isPending} className={globalStyles.a_button_inside}>Log in</button>
-
                         <Link className={globalStyles.a_button_inside} to="/register">Register</Link>
                         <a className={globalStyles.a_button_inside} onClick={() => navigate(-1)}>Back</a>  
                     </div>
-                    <p id={localStyles.errors_p}>{errorMsg}</p>
                 </form>
             </section>
         </section>

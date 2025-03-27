@@ -8,6 +8,7 @@ const userDetailsUrl = 'http://127.0.0.1:5000/user-details'
 const registerUrl = 'http://127.0.0.1:5000/register-user'
 const userUpdateUrl = 'http://127.0.0.1:5000/user-update'
 const userDeleteUrl = 'http://127.0.0.1:5000/user-delete'
+const changePasswordUrl = 'http://127.0.0.1:5000/user-change-password'
 
 export const useLogin = () => {
     const abortRef = useRef();
@@ -60,8 +61,8 @@ export const useUpdateUser = () => {
     const {authenticatedRequest} = useAuthRequester()
     const {userId} = useContext(UserContext)
 
-    const update = async (userData) => {
-        const result = await authenticatedRequest.put(`${userUpdateUrl}/${userId}`, userData);
+    const update = async (passData) => {
+        const result = await authenticatedRequest.put(`${userUpdateUrl}/${userId}`, passData);
         return result;
     }
 
@@ -111,5 +112,18 @@ export const useDeleteUser = () => {
 
     return {
         deleteUser,
+    }
+};
+
+export const useChangePass = () => {
+    const {authenticatedRequest} = useAuthRequester()
+
+    const changePass = async (passData) => {
+        const result = await authenticatedRequest.post(changePasswordUrl, passData);
+        return result;
+    }
+
+    return {
+        changePass,
     }
 };

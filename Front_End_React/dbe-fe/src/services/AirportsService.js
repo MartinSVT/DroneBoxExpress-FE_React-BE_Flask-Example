@@ -4,7 +4,7 @@ import useAuthRequester from "../utilities/authRequester";
 const mainAirportsUrl = 'http://127.0.0.1:5000/airports';
 
 export const useAirports = () => {
-    const [airports, setAirports] = useState();
+    const [airports, setAirports] = useState([]);
     const {authenticatedRequest} = useAuthRequester()
 
     useEffect(() => {

@@ -18,7 +18,7 @@ export default function Operations() {
             <section className={localStyles.main_ops_section}>
                 <div className={localStyles.ops_div}>
                     <h2 className={globalStyles.section_heading_h2} >Routes Menu</h2>
-                    <Link className={globalStyles.a_button_inside} to={'/AddRoute'} >Add Route</Link>
+                    <Link className={globalStyles.a_button_inside} to={'/addRoute'} >Add Route</Link>
                     {routes ? (
                             <>
                             {routes.map(route => <RouteComp
@@ -36,7 +36,7 @@ export default function Operations() {
                 </div>
                 <div className={localStyles.ops_div}>
                     <h2 className={globalStyles.section_heading_h2} >Airports Menu</h2>
-                    <Link className={globalStyles.a_button_inside} to={'/AddAirport'} >Add Airport</Link>
+                    <Link className={globalStyles.a_button_inside} to={'/addAirport'} >Add Airport</Link>
                         {airports ? (
                             <>
                             {airports.map(airport => <Airport

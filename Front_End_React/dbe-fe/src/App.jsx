@@ -25,6 +25,9 @@ import UserEditComp from './components/UserComponents/UserEditComp'
 import DeleteUser from './components/UserComponents/DeleteUserComp'
 import ChangePassword from './components/UserComponents/ChangePasswordComp'
 import Operations from './components/OperationsComponents/OperationsComp'
+import AddAirport from './components/OperationsComponents/AddAirportComp'
+import EditAirport from './components/OperationsComponents/EditAirportComp'
+import DeleteAirport from './components/OperationsComponents/DeleteAirportComp'
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState(() => getUserDataFromLocal());
@@ -67,6 +70,9 @@ function App() {
                 <Route path='/editArticle/:articleId' element={<EditArticle />}></Route>
                 <Route path='/deleteArticle/:articleId' element={<DeleteArticle />}></Route>
                 <Route path='/operations' element={<Operations />}></Route>
+                <Route path='/addAirport' element={<AddAirport />}></Route>
+                <Route path='/editAirport/:airportId' element={<EditAirport />}></Route>
+                <Route path='/deleteAirport/:airportId' element={<DeleteAirport />}></Route>
               </Route>
             </Route>
             <Route element={<GuestGuard />}>

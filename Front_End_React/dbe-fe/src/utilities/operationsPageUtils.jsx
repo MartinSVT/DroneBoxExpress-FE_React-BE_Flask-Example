@@ -1,9 +1,22 @@
+import { useAirport } from '../services/AirportsService';
+import { useCustomeRoute } from '../services/RoutesService';
+
 export function SelectAirportOptions({ state }) {
     return (
       <option key={state.id} value={state.id}>
         {state.airport_name}
       </option>
     );
+}
+
+export function SelectRouteOptions({ route }) {
+  const {airport : originAirport} = useAirport(route.origin_airport)
+  const {airport : destinationAirport} = useAirport(route.destination_airport)
+  return (
+    <option key={route.id} value={route.id}>
+      From: {originAirport.airport_name} to {destinationAirport.airport_name}
+    </option>
+  );
 }
 
 export function getAirportById(id, airportsArray) {

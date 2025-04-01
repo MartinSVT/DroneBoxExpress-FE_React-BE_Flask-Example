@@ -4,7 +4,7 @@ import useAuthRequester from "../utilities/authRequester";
 const mainRoutesUrl = 'http://127.0.0.1:5000/routes';
 
 export const useCustomeRoutes = () => {
-    const [routes, setRoutes] = useState();
+    const [routes, setRoutes] = useState([]);
     const {authenticatedRequest} = useAuthRequester()
 
     useEffect(() => {
@@ -28,8 +28,10 @@ export const useCustomeRoute = (routeId) => {
 
     useEffect(() => {
         async function getRouteData() {
+            if (routeId && routeId !== "Select Route") {
             const result = await authenticatedRequest.get(`${mainRoutesUrl}/${routeId}`);
             setRoute(result);
+            }
         }
         getRouteData();
     }, [routeId]);

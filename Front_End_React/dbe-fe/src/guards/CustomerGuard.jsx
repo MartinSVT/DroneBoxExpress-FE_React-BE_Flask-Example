@@ -3,10 +3,10 @@ import { Navigate, Outlet } from "react-router";
 import { UserContext } from "../contexts/userContext";
 
 
-export default function PermissionGuard() {
+export default function CustomerGuard() {
     const {isStaff} = useContext(UserContext)
 
-    if (!isStaff) {
+    if (isStaff) {
         return <Navigate to="/home" />
     }
 

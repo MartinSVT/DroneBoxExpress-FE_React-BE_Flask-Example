@@ -28,8 +28,10 @@ export const useAirport = (airportId) => {
 
     useEffect(() => {
         async function getAirportData() {
-            const result = await authenticatedRequest.get(`${mainAirportsUrl}/${airportId}`);
-            setAirport(result);
+            if (airportId) {
+                const result = await authenticatedRequest.get(`${mainAirportsUrl}/${airportId}`);
+                setAirport(result);
+            }
         }
         getAirportData();
     }, [airportId]);

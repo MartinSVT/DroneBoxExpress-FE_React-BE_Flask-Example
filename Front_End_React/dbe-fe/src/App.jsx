@@ -31,6 +31,11 @@ import DeleteAirport from './components/OperationsComponents/DeleteAirportComp'
 import AddRoute from './components/OperationsComponents/AddRouteComp'
 import EditRoute from './components/OperationsComponents/EditRouteComp'
 import DeleteRoute from './components/OperationsComponents/DeleteRouteComp'
+import StaffListOrders from './components/OrdersComponents/StaffListOrdersComp'
+import OrderDetails from './components/OrdersComponents/OrderDetailsComp'
+import ListOrders from './components/OrdersComponents/ListOrders'
+import CustomerGuard from './guards/CustomerGuard'
+import CreateOrder from './components/OrdersComponents/CreateOrderComp'
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState(() => getUserDataFromLocal());
@@ -68,6 +73,11 @@ function App() {
               <Route path='/editProfile' element={<UserEditComp/>}></Route>
               <Route path='/deleteProfile' element={<DeleteUser/>}></Route>
               <Route path='/changePassword' element={<ChangePassword />}></Route>
+              <Route path='/orderDetails/:orderId' element={<OrderDetails />}></Route>
+              <Route element={<CustomerGuard />}>
+                <Route path='/orders/' element={<ListOrders />}></Route>
+                <Route path='/addOrder/' element={<CreateOrder />}></Route>
+              </Route>
               <Route element={<PermissionGuard />}>
                 <Route path='/addArticle' element={<AddArticle />}></Route>
                 <Route path='/editArticle/:articleId' element={<EditArticle />}></Route>
@@ -79,6 +89,7 @@ function App() {
                 <Route path='/addRoute' element={<AddRoute />}></Route>
                 <Route path='/editRoute/:routeId' element={<EditRoute />}></Route>
                 <Route path='/deleteRoute/:routeId' element={<DeleteRoute />}></Route>
+                <Route path='/staffOrders/' element={<StaffListOrders />}></Route>
               </Route>
             </Route>
             <Route element={<GuestGuard />}>

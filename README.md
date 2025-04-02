@@ -25,7 +25,7 @@ The project is currently being developed and it’s not in its finished state
   - run: "flask run" in your shell (the server should start on "http://127.0.0.1:5000")  
   - Further documentation for the rest API endpoints and postman collection within the Backend folder readme_be.md  
   
-* Front-End Status: Completed on 60%  [Add "Staff User" Register functionality, Add Profile Picture Functionality, Add Orders Functionality, Add Unit Testing]  
+* Front-End Status: Completed on 90%  [Add "Staff User" Register functionality, Add Profile Picture Functionality, Add Unit Testing]  
     
   [Commands for Starting the Frontend]  
   - cd to the directory where package.json is located [dbe-fe folder]  

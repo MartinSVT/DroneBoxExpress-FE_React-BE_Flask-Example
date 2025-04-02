@@ -4,7 +4,7 @@ import requester from "./requester";
 
 
 export default function useAuthRequester() {
-    const {username, userId, token, isStaff} = useContext(UserContext)
+    const { userId, token } = useContext(UserContext)
 
     const requesterAuthWrapper = useCallback((method, url, data, options = {}) => {
         const authOptions = {

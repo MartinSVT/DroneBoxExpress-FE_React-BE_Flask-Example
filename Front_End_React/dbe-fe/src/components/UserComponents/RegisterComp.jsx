@@ -4,6 +4,7 @@ import globalStyles from '../../App.module.css'
 import localStyles from './LoginCompCSS.module.css'
 import { useRegister } from "../../services/userService";
 
+
 export default function Register() {
     const { registerUser } = useRegister();
     const navigate = useNavigate();
@@ -17,7 +18,14 @@ export default function Register() {
             return values;
         }
 
-        const response = await registerUser(values.username, values.email, values.firstName, values.lastName, values.password1, values.password2);
+        const response = await registerUser(
+            values.username, 
+            values.email, 
+            values.firstName, 
+            values.lastName, 
+            values.password1, 
+            values.password2
+        );
     
         if (response.username){
             navigate(`/successfulregister/${response.username}`);

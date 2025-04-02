@@ -4,6 +4,7 @@ import globalStyles from '../../App.module.css'
 import localStyles from './ArticleCSS.module.css'
 import { useCreateNewsArticle } from '../../services/newsArticlesService';
 
+
 export default function AddArticle() {
     const { create } = useCreateNewsArticle();
     const navigate = useNavigate();
@@ -57,7 +58,6 @@ export default function AddArticle() {
                         required
                     ></textarea> 
                         
-
                     <p id={localStyles.errors_p}>{formState.errorString}</p>
 
                     <div className={localStyles.form_buttons_div}>

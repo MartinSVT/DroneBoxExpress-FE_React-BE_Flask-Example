@@ -1,6 +1,6 @@
+import { Link, useNavigate, useParams } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './LoginCompCSS.module.css'
-import { Link, useNavigate, useParams } from "react-router";
 
 
 export default function SuccsefulRegister() {

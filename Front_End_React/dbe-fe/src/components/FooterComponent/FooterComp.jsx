@@ -1,5 +1,6 @@
 import localStyles from './FooterCompCSS.module.css'
 
+
 export default function Footer() {
 
     return (

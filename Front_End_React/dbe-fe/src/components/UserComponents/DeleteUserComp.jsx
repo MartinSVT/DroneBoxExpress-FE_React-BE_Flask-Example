@@ -1,8 +1,8 @@
+import { useContext, useActionState } from "react";
+import { useNavigate } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './LoginCompCSS.module.css'
-import { useNavigate } from "react-router";
 import { UserContext } from "../../contexts/userContext";
-import { useContext, useActionState } from "react";
 import { useDeleteUser } from '../../services/userService';
 
 
@@ -13,7 +13,6 @@ export default function DeleteUser() {
 
     const deleteHandler = async () => {
         const response = await deleteUser();
-
         if (response === 204){
             userLogoutHandler();
         } else {

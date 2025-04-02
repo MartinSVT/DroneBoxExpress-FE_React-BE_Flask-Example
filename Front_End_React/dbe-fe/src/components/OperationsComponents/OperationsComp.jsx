@@ -7,7 +7,6 @@ import Airport from "./AirportComp";
 import RouteComp from "./RouteComp";
 
 
-
 export default function Operations() {
     const { airports } = useAirports();
     const { routes } = useCustomeRoutes();

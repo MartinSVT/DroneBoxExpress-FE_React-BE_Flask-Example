@@ -53,3 +53,29 @@ export const useCreateOrder = () => {
         createOrder,
     }
 }
+
+export const useUpdateOrder = () => {
+    const {authenticatedRequest} = useAuthRequester()
+
+    const updateOrder = async (orderData, orderId) => {
+        const result = await authenticatedRequest.put(`${mainOrdersUrl}/${orderId}`, orderData);
+        return result;
+    }
+
+    return {
+        updateOrder,
+    }
+};
+
+export const useDeleteOrder = () => {
+    const {authenticatedRequest} = useAuthRequester()
+
+    const deleteOrder = async (orderId) => {
+        const result = await authenticatedRequest.delete(`${mainOrdersUrl}/${orderId}`);
+        return result;
+    }
+
+    return {
+        deleteOrder,
+    }
+};

@@ -1,11 +1,11 @@
+import { useContext } from 'react';
 import {Link, NavLink} from 'react-router';
 import localStyles from './HeaderCompCSS.module.css'
 import { UserContext } from '../../contexts/userContext';
-import { useContext } from 'react';
 
 
 export default function Header() {
-    const {username, userId, token, isStaff} = useContext(UserContext)
+    const {username, userId, isStaff} = useContext(UserContext)
 
     return (
         <>

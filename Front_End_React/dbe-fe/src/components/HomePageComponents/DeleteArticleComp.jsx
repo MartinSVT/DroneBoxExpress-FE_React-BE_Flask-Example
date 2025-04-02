@@ -1,9 +1,10 @@
-import { useNavigate, useParams } from "react-router";
 import { useContext } from "react";
+import { useNavigate, useParams } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './ArticleCSS.module.css'
-import { useDeleteNewsArticle, useNewsArticleDetails } from "../../services/newsArticlesService";
 import { UserContext } from "../../contexts/userContext";
+import { useDeleteNewsArticle, useNewsArticleDetails } from "../../services/newsArticlesService";
+
 
 export default function DeleteArticle() {
     const {articleId} = useParams();

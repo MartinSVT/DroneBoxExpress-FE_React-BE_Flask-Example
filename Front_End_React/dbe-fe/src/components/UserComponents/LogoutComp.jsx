@@ -1,8 +1,8 @@
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './LogoutCompCSS.module.css'
-import { Link, useNavigate } from "react-router";
 import { UserContext } from "../../contexts/userContext";
-import { useContext } from "react";
 
 
 export default function Logout() {

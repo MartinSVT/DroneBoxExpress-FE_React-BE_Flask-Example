@@ -3,6 +3,7 @@ import globalStyles from '../../App.module.css'
 import localStyles from './OperationsCSS.module.css'
 import { useDeleteAirport } from "../../services/AirportsService";
 
+
 export default function DeleteAirport() {
     const { airportId } = useParams();
     const { deleteAirport } = useDeleteAirport();

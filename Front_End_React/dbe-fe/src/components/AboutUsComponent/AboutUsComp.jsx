@@ -1,5 +1,6 @@
 import globalStyles from '../../App.module.css'
 
+
 export default function AboutUs() {
 
     return (

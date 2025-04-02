@@ -4,6 +4,7 @@ import localStyles from './OrdersCSS.module.css'
 import { useCustomeRoute } from '../../services/RoutesService';
 import { useAirport } from '../../services/AirportsService';
 
+
 export default function OrderItem({
     id,
     weight,
@@ -20,7 +21,7 @@ export default function OrderItem({
         <p>Weight: { weight } kg</p>
         <p >From &#187; { originAirport.airport_name }</p>
         <p>To &#187; { destinationAirport.airport_name }</p>
-        <p>Price: { cost } BGN</p>
+        <p>Price: { cost.toFixed(2) } BGN</p>
         <div className={localStyles.orders_div_buttons}>
             <Link className={globalStyles.a_button_inside} to={`/orderDetails/${id}`}>Details</Link>
         </div>

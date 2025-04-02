@@ -1,27 +1,33 @@
-import { useState, useContext } from 'react'
-import { useNavigate } from "react-router";
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './OrdersCSS.module.css'
-import { UserContext } from '../../contexts/userContext';
+import { useOrder } from "../../services/ordersService";
 import { useCustomeRoutes, useCustomeRoute } from '../../services/RoutesService';
-import { useCreateOrder } from '../../services/ordersService';
+import { useUpdateOrder } from '../../services/ordersService';
 import { SelectRouteOptions } from '../../utilities/operationsPageUtils';
 
 
-export default function CreateOrder() {
+export default function EditOrder() {
     const [disabled, setDisabled] = useState(false)
+    const navigate = useNavigate();
+    const { updateOrder } = useUpdateOrder();
+    const { orderId } = useParams();
+    const { order } = useOrder(orderId);
+    const { routes } = useCustomeRoutes();
     const [formData, setFormData] = useState({
-        route: "Select Route",
+        route: "",
         weight: "",
         errorsRoute: "",
         errorsWeigth: "",
         errorsServer: "",
-      });
-    const { userId } = useContext(UserContext)
-    const { routes } = useCustomeRoutes();
-    const {route : currentR} = useCustomeRoute(formData.route)
-    const { createOrder } = useCreateOrder();
-    const navigate = useNavigate();
+        });
+    useEffect(() => {
+        if (order.order_route && order.weight) {
+            setFormData((prevFormData) => ({ ...prevFormData, "route": order.order_route, "weight": order.weight }))
+        }
+    }, [order]);
+    const {route : currentR} = useCustomeRoute(formData.route) 
 
     const formChangeHandler = (event) => {
         const { name, value } = event.target;
@@ -49,13 +55,14 @@ export default function CreateOrder() {
         }
         if (!errorsFlag) {
             let orderCost = event.target.cost.value;
-            let orderData = {
-                "weight": Number(formData.weight),
+            const updatedOrder = {
+                "weight": formData.weight,
                 "cost": orderCost,
-                "order_route": Number(formData.route),
-                "order_user": userId
+                "order_route": formData.route,
+                "order_user": order.order_user,
             }
-            const response = await createOrder(orderData);
+            
+            const response = await updateOrder(updatedOrder, orderId);
             if (response.id){
                 setDisabled(false);
                 navigate(`/orders`);
@@ -66,12 +73,12 @@ export default function CreateOrder() {
             };
         }
         setDisabled(false);
-    };
+    }
 
-    return (
+    return(
         <section className={globalStyles.main_section}>
             <section className={localStyles.form_section}>
-                <h1 className={globalStyles.section_heading}>Create Order</h1>
+                <h1 className={globalStyles.section_heading}>Edit Order</h1>
                 <form className={localStyles.form_flex} onSubmit={createHandler}>
                     <label htmlFor="route">Route:</label>
                     <select 
@@ -107,9 +114,9 @@ export default function CreateOrder() {
                         name="cost"
                         id="cost"
                         value={formData.weight && formData.route !== "Select Route" ? (
-                            formData.weight * currentR.cost_per_kg
+                            formData.weight * currentR.cost_per_kg ? (formData.weight * currentR.cost_per_kg):(0)
                         ):(
-                            ""
+                            0
                         )
                         }
                         onChange={formChangeHandler}
@@ -119,11 +126,10 @@ export default function CreateOrder() {
                     <p id={localStyles.errors_p}>{formData.errorsServer}</p>
 
                     <div className={localStyles.form_buttons_div}>
-                        <button type="submit" disabled={disabled} className={globalStyles.a_button_inside}>Create</button>
+                        <button type="submit" disabled={disabled} className={globalStyles.a_button_inside}>Update</button>
                         <a className={globalStyles.a_button_inside} onClick={() => navigate(-1)}>Back</a>
                     </div>
                 </form>
             </section>
         </section>
-    )
-}
+    )}

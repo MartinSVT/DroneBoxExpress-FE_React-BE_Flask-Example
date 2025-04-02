@@ -2,28 +2,29 @@ import { useState } from 'react'
 import { Route, Routes } from 'react-router'
 import globalStyles from './App.module.css'
 import { UserContext } from './contexts/userContext'
+import { useUserDetails } from './services/userService'
+import { localData } from './utilities/localUserData'
+import { getUserDataFromLocal } from './utilities/localUserData'
+import AuthGuard from './guards/AuthGuard'
+import GuestGuard from './guards/GuestGuard'
+import CustomerGuard from './guards/CustomerGuard'
+import PermissionGuard from './guards/PermissionGuard'
 import Header from './components/HeaderComponent/HeaderComp'
-import Home from './components/HomePageComponents/HomeComp'
 import Footer from './components/FooterComponent/FooterComp'
 import AboutUs from './components/AboutUsComponent/AboutUsComp'
 import Contacts from './components/ContactsComponent/ContactsComp'
-import AddArticle from './components/HomePageComponents/AddArticleComp'
-import { localData } from './utilities/localUserData'
 import Login from './components/UserComponents/LoginComp'
-import { useUserDetails } from './services/userService'
 import Logout from './components/UserComponents/LogoutComp'
 import Register from './components/UserComponents/RegisterComp'
 import SuccsefulRegister from './components/UserComponents/SuccesfullRegistrationComp'
+import Profile from './components/UserComponents/ProfileComp'
+import UserEditComp from './components/UserComponents/UserEditComp'
+import ChangePassword from './components/UserComponents/ChangePasswordComp'
+import DeleteUser from './components/UserComponents/DeleteUserComp'
+import Home from './components/HomePageComponents/HomeComp'
+import AddArticle from './components/HomePageComponents/AddArticleComp'
 import DeleteArticle from './components/HomePageComponents/DeleteArticleComp'
 import EditArticle from './components/HomePageComponents/EditArticleComp'
-import AuthGuard from './guards/AuthGuard'
-import GuestGuard from './guards/GuestGuard'
-import PermissionGuard from './guards/PermissionGuard'
-import Profile from './components/UserComponents/ProfileComp'
-import { getUserDataFromLocal } from './utilities/localUserData'
-import UserEditComp from './components/UserComponents/UserEditComp'
-import DeleteUser from './components/UserComponents/DeleteUserComp'
-import ChangePassword from './components/UserComponents/ChangePasswordComp'
 import Operations from './components/OperationsComponents/OperationsComp'
 import AddAirport from './components/OperationsComponents/AddAirportComp'
 import EditAirport from './components/OperationsComponents/EditAirportComp'
@@ -34,8 +35,10 @@ import DeleteRoute from './components/OperationsComponents/DeleteRouteComp'
 import StaffListOrders from './components/OrdersComponents/StaffListOrdersComp'
 import OrderDetails from './components/OrdersComponents/OrderDetailsComp'
 import ListOrders from './components/OrdersComponents/ListOrders'
-import CustomerGuard from './guards/CustomerGuard'
 import CreateOrder from './components/OrdersComponents/CreateOrderComp'
+import OrderDelete from './components/OrdersComponents/DeleteOrderComp'
+import CompleteOrder from './components/OrdersComponents/CompleteOrder'
+import EditOrder from './components/OrdersComponents/EditOrderComp'
 
 function App() {
   const [currentUserData, setCurrentUserData] = useState(() => getUserDataFromLocal());
@@ -74,9 +77,11 @@ function App() {
               <Route path='/deleteProfile' element={<DeleteUser/>}></Route>
               <Route path='/changePassword' element={<ChangePassword />}></Route>
               <Route path='/orderDetails/:orderId' element={<OrderDetails />}></Route>
+              <Route path='/deleteOrder/:orderId' element={<OrderDelete />}></Route>
               <Route element={<CustomerGuard />}>
                 <Route path='/orders/' element={<ListOrders />}></Route>
                 <Route path='/addOrder/' element={<CreateOrder />}></Route>
+                <Route path='/editOrder/:orderId' element={<EditOrder />}></Route>
               </Route>
               <Route element={<PermissionGuard />}>
                 <Route path='/addArticle' element={<AddArticle />}></Route>
@@ -90,6 +95,7 @@ function App() {
                 <Route path='/editRoute/:routeId' element={<EditRoute />}></Route>
                 <Route path='/deleteRoute/:routeId' element={<DeleteRoute />}></Route>
                 <Route path='/staffOrders/' element={<StaffListOrders />}></Route>
+                <Route path='/completeOrder/:orderId' element={<CompleteOrder />}></Route>
               </Route>
             </Route>
             <Route element={<GuestGuard />}>

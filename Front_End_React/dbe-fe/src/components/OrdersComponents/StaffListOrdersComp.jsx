@@ -3,6 +3,7 @@ import localStyles from './OrdersCSS.module.css'
 import { useOrders } from "../../services/ordersService";
 import OrderItem from "./OrderItemComp";
 
+
 export default function StaffListOrders() {
     const { orders } = useOrders();
 

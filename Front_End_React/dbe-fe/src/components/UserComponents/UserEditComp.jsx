@@ -1,8 +1,8 @@
+import { useContext, useEffect, useState, useActionState } from "react";
+import { Link, useNavigate } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './LoginCompCSS.module.css'
-import { Link, useNavigate } from "react-router";
 import { UserContext } from "../../contexts/userContext";
-import { useContext, useEffect, useState, useActionState } from "react";
 import { useUserDetails } from '../../services/userService';
 import { useUpdateUser } from '../../services/userService';
 

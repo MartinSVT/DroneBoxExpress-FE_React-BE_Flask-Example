@@ -2,10 +2,11 @@ import { useContext } from 'react'
 import {Link, useParams } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './OrdersCSS.module.css'
+import { UserContext } from '../../contexts/userContext';
 import { useCustomeRoute } from '../../services/RoutesService';
 import { useAirport } from '../../services/AirportsService';
 import { useOrder } from "../../services/ordersService";
-import { UserContext } from '../../contexts/userContext';
+
 
 export default function OrderDetails() {
     const { orderId } = useParams();
@@ -41,7 +42,7 @@ export default function OrderDetails() {
                             </p>
                             <p className={localStyles.main_order_card_item}>
                                 <span>Price:</span>
-                                <span>{ order.cost }</span>
+                                <span>{ order.cost.toFixed(2) }</span>
                             </p>
                             <p className={localStyles.main_order_card_item}>
                                 <span>Order Status:</span>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useContext } from "react";
+import { UserContext } from "../contexts/userContext";
 import requester from "../utilities/requester";
 import useAuthRequester from "../utilities/authRequester";
-import { UserContext } from "../contexts/userContext";
 
 const loginUrl = 'http://127.0.0.1:5000/login';
 const userDetailsUrl = 'http://127.0.0.1:5000/user-details'

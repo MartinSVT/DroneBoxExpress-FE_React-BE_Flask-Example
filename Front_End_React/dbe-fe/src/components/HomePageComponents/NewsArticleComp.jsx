@@ -1,7 +1,8 @@
+import { useContext } from 'react'
 import { Link } from 'react-router'
 import globalStyles from '../../App.module.css'
-import { useContext } from 'react'
 import { UserContext } from '../../contexts/userContext'
+
 
 export default function NewsArticle({
     id,
@@ -11,7 +12,7 @@ export default function NewsArticle({
     updated_date,
     article_user,
 }) {
-    const {username, userId, token, isStaff} = useContext(UserContext)
+    const { userId } = useContext(UserContext)
 
     return (
         <article className={globalStyles.news_article}>

@@ -1,5 +1,5 @@
 import { useActionState } from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import globalStyles from '../../App.module.css'
 import localStyles from './LoginCompCSS.module.css'
 import { useChangePass } from "../../services/userService";

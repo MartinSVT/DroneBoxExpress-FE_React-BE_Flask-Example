@@ -30,16 +30,16 @@ class UserManager:
             db.session.add(user)
             db.session.flush()
             # email_address to be replaced with user.email at production
-            register_mail = mt.Mail(
-                sender=mt.Address(
-                    email="droneboxexpress@demomailtrap.com", name="DroneBoxExpress Team"
-                ),
-                to=[mt.Address(email="martin1987bg@gmail.com")],
-                subject=f"DroneBoxExpress Registration {user.id}",
-                text=f"You have successfully made a Registration with Drone Boxe Express Ltd.\n"
-                     f"Your username is {user.username} with an id {user.id}",
-            )
-            client.send(register_mail)
+            # register_mail = mt.Mail(
+            #     sender=mt.Address(
+            #         email="droneboxexpress@demomailtrap.com", name="DroneBoxExpress Team"
+            #     ),
+            #     to=[mt.Address(email="martin1987bg@gmail.com")],
+            #     subject=f"DroneBoxExpress Registration {user.id}",
+            #     text=f"You have successfully made a Registration with Drone Boxe Express Ltd.\n"
+            #          f"Your username is {user.username} with an id {user.id}",
+            # )
+            # client.send(register_mail)
             return user
         except Exception as ex:
             raise BadRequest(str(ex))

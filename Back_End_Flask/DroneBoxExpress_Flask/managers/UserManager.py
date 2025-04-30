@@ -1,5 +1,5 @@
 import mailtrap as mt
-from werkzeug.exceptions import BadRequest
+from werkzeug.exceptions import BadRequest, NotFound
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from DataBase import db
@@ -29,6 +29,9 @@ class UserManager:
         try:
             db.session.add(user)
             db.session.flush()
+
+            # Sending Registration Emails Functionality -- currently stopped as free tier expired!
+
             # email_address to be replaced with user.email at production
             # register_mail = mt.Mail(
             #     sender=mt.Address(
@@ -65,6 +68,14 @@ class UserManager:
             return user
         except Exception as ex:
             raise BadRequest(str(ex))
+
+    @staticmethod
+    def list_users():
+        users = db.session.execute(db.select(UserModel)).scalars()
+        if users:
+            return users
+        else:
+            raise NotFound("Resource Does Not Exist")
 
     @staticmethod
     def login_user(data):

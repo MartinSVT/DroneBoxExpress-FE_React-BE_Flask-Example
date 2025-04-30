@@ -9,7 +9,7 @@ import { useDeleteUser } from '../../services/userService';
 export default function DeleteUser() {
     let { userLogoutHandler } = useContext(UserContext)
     const navigate = useNavigate()
-    const {deleteUser} = useDeleteUser();
+    const { deleteUser } = useDeleteUser();
 
     const deleteHandler = async () => {
         const response = await deleteUser();

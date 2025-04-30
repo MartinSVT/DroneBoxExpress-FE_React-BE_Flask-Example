@@ -1,4 +1,4 @@
-import { useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { UserContext } from "../contexts/userContext";
 import requester from "../utilities/requester";
 import useAuthRequester from "../utilities/authRequester";
@@ -31,6 +31,27 @@ export const useLogin = () => {
         login,
     }
 };
+
+
+export const useUsers = () => {
+    const [users, setUsers] = useState([]);
+    const {authenticatedRequest} = useAuthRequester()
+
+    useEffect(() => {
+        const abortController = new AbortController();
+        const signal = abortController.signal;
+
+        authenticatedRequest.get(registerUrl, null, {signal})
+            .then(setUsers);
+
+        return () => {
+            abortController.abort();
+        };
+    }, []);
+
+    return { users };
+};
+
 
 export const useUserDetails = () => {
     const abortRef = useRef();
@@ -114,6 +135,22 @@ export const useDeleteUser = () => {
         deleteUser,
     }
 };
+
+
+export const useStaffDeleteUser = () => {
+    const {authenticatedRequest} = useAuthRequester()
+
+    const deleteUser = async (userId) => {
+        const result = await authenticatedRequest.delete(`${userDeleteUrl}/${userId}`);
+        console.log(result)
+        return result;
+    }
+
+    return {
+        deleteUser,
+    }
+};
+
 
 export const useChangePass = () => {
     const {authenticatedRequest} = useAuthRequester()

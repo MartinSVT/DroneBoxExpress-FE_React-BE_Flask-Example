@@ -16,6 +16,9 @@ class OrdersManager:
             db.session.add(new_order)
             db.session.flush()
             print(new_order)
+
+            # Sending Order Emails Functionality -- currently stopped as free tier expired!
+
             # email_address to be replaced with user.email at production
             # order_mail = mt.Mail(
             #     sender=mt.Address(

@@ -32,6 +32,7 @@ import DeleteAirport from './components/OperationsComponents/DeleteAirportComp'
 import AddRoute from './components/OperationsComponents/AddRouteComp'
 import EditRoute from './components/OperationsComponents/EditRouteComp'
 import DeleteRoute from './components/OperationsComponents/DeleteRouteComp'
+import StaffDeleteUser from './components/OperationsComponents/DeleteUserComp'
 import StaffListOrders from './components/OrdersComponents/StaffListOrdersComp'
 import OrderDetails from './components/OrdersComponents/OrderDetailsComp'
 import ListOrders from './components/OrdersComponents/ListOrders'
@@ -94,6 +95,7 @@ function App() {
                 <Route path='/addRoute' element={<AddRoute />}></Route>
                 <Route path='/editRoute/:routeId' element={<EditRoute />}></Route>
                 <Route path='/deleteRoute/:routeId' element={<DeleteRoute />}></Route>
+                <Route path='/deleteUser/:userId' element={<StaffDeleteUser />}></Route>
                 <Route path='/staffOrders/' element={<StaffListOrders />}></Route>
                 <Route path='/completeOrder/:orderId' element={<CompleteOrder />}></Route>
               </Route>

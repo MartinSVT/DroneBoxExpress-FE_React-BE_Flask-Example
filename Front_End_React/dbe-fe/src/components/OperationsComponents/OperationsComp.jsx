@@ -3,13 +3,16 @@ import globalStyles from '../../App.module.css'
 import localStyles from './OperationsCSS.module.css'
 import { useAirports } from "../../services/AirportsService";
 import { useCustomeRoutes } from "../../services/RoutesService";
+import { useUsers } from "../../services/userService";
 import Airport from "./AirportComp";
 import RouteComp from "./RouteComp";
+import UserComp from "./UserComp";
 
 
 export default function Operations() {
     const { airports } = useAirports();
     const { routes } = useCustomeRoutes();
+    const { users } = useUsers();
 
     return (
         <section className={globalStyles.main_section}>
@@ -51,6 +54,26 @@ export default function Operations() {
                             </div>
                         )}
                 </div>
+
+                <div className={localStyles.ops_div}>
+                    <h2 className={globalStyles.section_heading_h2} >Users Menu</h2>
+                    <Link className={globalStyles.a_button_inside} to={'/addAirport'} >Add Staff User</Link>
+                        {users ? (
+                            <>
+                            {users.map(user => <UserComp
+                                    key={user.id}
+                                    {...user}
+                                    />
+                                )
+                            }
+                            </>
+                        ) : (
+                            <div>
+                                There are no Users
+                            </div>
+                        )}
+                </div>
+
             </section>
         </section>
     )

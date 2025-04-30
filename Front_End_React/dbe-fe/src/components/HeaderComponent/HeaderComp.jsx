@@ -13,6 +13,7 @@ export default function Header() {
                 <nav className={localStyles.base_nav}>
                     <div className={localStyles.general_nav}>
                         <NavLink to="/home">Home</NavLink>
+                        {isStaff && <NavLink to="/addArticle">Add Article</NavLink> }
                         <NavLink to="/contacts">Contacts</NavLink>
                         <NavLink to="/about">About Us</NavLink>
                     </div>
@@ -29,7 +30,6 @@ export default function Header() {
                                     return (
                                         <>
                                         <NavLink to="/operations">Operations</NavLink>
-                                        <NavLink to="/addArticle">Add Article</NavLink> 
                                         <NavLink to="/staffOrders">Orders</NavLink>
                                         <NavLink to="/profile">Profile</NavLink>
                                         <NavLink to="/logout">Logout</NavLink>

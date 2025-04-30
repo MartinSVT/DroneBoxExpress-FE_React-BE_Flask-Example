@@ -19,6 +19,12 @@ from utils.decorators import validate_schema, permission_required
 
 
 class RegisterUser(Resource):
+    @auth.login_required
+    @permission_required()
+    def get(self):
+        users = UserManager.list_users()
+        return ResponseUserDetails().dump(users, many=True), 200
+
     @validate_schema(RegisterUserSchema)
     def post(self):
         data = request.get_json()
@@ -72,7 +78,10 @@ class DeleteUser(Resource):
             UserManager.delete_user(id_)
             return 204
         else:
-            return "Not Authorized"
+            if user.is_staff:
+                UserManager.delete_user(id_)
+            else:
+                return "Not Authorized"
 
 
 class ChangePassword(Resource):
